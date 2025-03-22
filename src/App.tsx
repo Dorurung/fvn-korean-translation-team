@@ -93,7 +93,7 @@ const Projects = () => {
             key={project.id}
             className="border p-2 rounded-md bg-white shadow-md hover:bg-gray-200"
             onClick={() => handleSelectProject(project)}
-            {...pageTransition(index * 0.1)}
+            {...pageTransition(0.3 + (index+1) * 0.2)}
           >
             <img src={project.banner_image} alt={project.title} className="place-self-center object-contain rounded-md justify-center" />
             {/* <p className="text-sm mt-2">{project.title}</p> */}
@@ -175,7 +175,7 @@ const Team = () => (
     <h2 className="text-xl font-bold">우리는...</h2>
     <p className="mt-2">퍼리 비주얼 노벨을 너무나 사랑해서 한국어로 번역하고 싶어하는 사람들입니다.</p>
   </motion.div>
-  <motion.div className="p-4 text-center" {...pageTransition(0.3)}>
+  <motion.div className="p-4 text-center" {...pageTransition(0.5)}>
     <h2 className="text-xl font-bold">커뮤니티</h2>
     <p className="mt-2">디스코드 서버에서 최신 배포와 소식을 알아보세요.</p>
     <br />
@@ -185,9 +185,9 @@ const Team = () => (
   </motion.div>
   <motion.div className="p-4 text-left" {...pageTransition(1.0)}>
     <h2 className="text-xl text-center font-bold">팀원 소개</h2>
-    {teamMemberData.map((member) => (
+    {teamMemberData.map((member, index) => (
       <>
-      <div className="flex items-left p-4 bg-white shadow-md rounded-lg mt-4">
+      <motion.div className="flex items-left p-4 bg-white shadow-md rounded-lg mt-4" {...pageTransition(1.0 + (index+1) * 0.2)}>
         <img
           src={member.image}
           className="w-32 h-32 rounded-full object-cover"
@@ -219,7 +219,7 @@ const Team = () => (
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
       </>
     ))}
   </motion.div>
