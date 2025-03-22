@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Routes, Link, useLocation } from "react
 import { useRef, useState } from "react";
 
 import './App.css'
-import discordIcon from './assets/icons/discord_icon.png'
-import telegramIcon from './assets/icons/telegram_icon.png'
-import twitterIcon from './assets/icons/twitter_icon.jpg'
+import discordIcon from '/assets/icons/discord_icon.png'
+import telegramIcon from '/assets/icons/telegram_icon.png'
+import twitterIcon from '/assets/icons/twitter_icon.jpg'
 
 const pageTransition = (delay: number = 0) => {return {
   initial: { opacity: 0, y: 20 },
@@ -13,50 +13,43 @@ const pageTransition = (delay: number = 0) => {return {
   exit: { opacity: 0, y: -20, transition: {duration: 0.1, delay: 0} }
 }};
 
-const Home = () => (
-  <motion.div className="p-4 text-center" {...pageTransition}>
-    <h1 className="text-2xl font-bold">털글번역단</h1>
-    <p className="mt-2">퍼리 비주얼 노벨을 번역하는 팀입니다.</p>
-  </motion.div>
-);
-
 const projectData = [
-  { id: 1, title: "Adastra", image: "./src/assets/projects/adastra.png", banner_image: "./src/assets/projects/adastra_banner.png",
+  { id: 1, title: "Adastra", image: "/assets/projects/adastra.png", banner_image: "/assets/projects/adastra_banner.png",
     description: "이탈리아와 로마 제국에 관심이 많은 주인공은 이탈리아 로마로 교환학생을 오게 된다. 어느 밤, 갑자기 방에 나타난 늑대인간 형상에 의해 납치를 당하게 되고, 자신의 이름을 아미쿠스(Amicus)라고 소개한 그 늑대인간이 어처구니없게도 본인의 지위를 지키기 위해 자신을 반려동물로 데리고 가려는 목적임을 알게 된다. 다시 지구로 돌아갈 수도 없게 된 주인공은 결국 지구로 돌아갈 수 있을 때까지만 아미쿠스의 반려동물 행세를 하기로 하는데...",
     originalLink: "https://echoproject.itch.io/adastra",
     status: "완료",
   },
-  { id: 2, title: "Interea", image: "./src/assets/projects/interea.webp", banner_image: "./src/assets/projects/interea_banner.png",
+  { id: 2, title: "Interea", image: "/assets/projects/interea.webp", banner_image: "/assets/projects/interea_banner.png",
     description: "인테레아는 아다스트라의 미드퀄입니다.\n아다스트라의 황제 아미쿠스와 그의 동반자 주인공의 사이드 에피소드들을 담고 있습니다.",
     originalLink: "https://echoproject.itch.io/interea",
     status: "완료(0.4버전)",
   },
-  { id: 3, title: "Khemia", image: "./src/assets/projects/khemia.png", banner_image: "./src/assets/projects/khemia_banner.png",
+  { id: 3, title: "Khemia", image: "/assets/projects/khemia.png", banner_image: "/assets/projects/khemia_banner.png",
     description: "케미아는 아다스트라의 시퀄입니다.\n멘헤라? 주인공 스키피오와 능글능글한 네페루의 케미를 감상해봐요.",
     originalLink: "https://echoproject.itch.io/khemia",
     status: "완료(0.1버전)",
   },
-  { id: 4, title: "The Smoke Room", image: "./src/assets/projects/tsr.png", banner_image: "./src/assets/projects/tsr_banner.png",
+  { id: 4, title: "The Smoke Room", image: "/assets/projects/tsr.png", banner_image: "/assets/projects/tsr_banner.png",
     description: "배경은 전작 Echo에서 약 100년전.\n남창 사무엘 아이어스는 더 나은 삶을 추구하려다 오히려 좋지 않은 결과로 이어진다.",
     originalLink: "https://thegoodnightfellowship.itch.io/the-smoke-room",
     status: "닉 루트 50% 완료",
   },
-  { id: 5, title: "Arches", image: "./src/assets/projects/arches.png", banner_image: "./src/assets/projects/arches_banner.png",
+  { id: 5, title: "Arches", image: "/assets/projects/arches.png", banner_image: "/assets/projects/arches_banner.png",
     description: "In March 2020, boyfriends Cameron and Devon arrive in the ghost town of Echo to conduct a paranormal investigation. It has been five years since the mass hysteria supposedly left the town completely abandoned. While it does seem empty at first, they realize that something evil still lurks in Echo, evil enough that it has kept the horrors alive. ",
     originalLink: "https://echoproject.itch.io/arches",
     status: "50% 완료",
   },
-  { id: 6, title: "Echo", image: "./src/assets/projects/echo.png", banner_image: "./src/assets/projects/echo_banner.png",
+  { id: 6, title: "Echo", image: "/assets/projects/echo.png", banner_image: "/assets/projects/echo_banner.png",
     description: "Echo is a horror visual novel about a small, isolated, desert town located somewhere in the southwestern states.",
     originalLink: "https://echoproject.itch.io/echo",
     status: "AI번역 진행중",
   },
-  { id: 7, title: "Remember the Flowers", image: "./src/assets/projects/rtf.gif", banner_image: "./src/assets/projects/rtf_banner.png",
+  { id: 7, title: "Remember the Flowers", image: "/assets/projects/rtf.gif", banner_image: "/assets/projects/rtf_banner.png",
     description: "This story follows the tale of an amnesiac man.\nWith memories fleeting,  he wakes up in what seems to be a new world.\nThe only thing he's certain of is his desire to return home.\nThe only question is: what has become of it?",
     originalLink: "https://jerichowo.itch.io/remember-the-flowers",
     status: "AI번역 진행중",
   },
-  { id: 8, title: "Burrows", image: "./src/assets/projects/burrows.png", banner_image: "./src/assets/projects/burrows_banner.png",
+  { id: 8, title: "Burrows", image: "/assets/projects/burrows.png", banner_image: "/assets/projects/burrows_banner.png",
     description: "After leaving behind his former life in 1920's New Orleans, a jaded possum named Grey finds himself thrown into an unending nightmare by the enigmatic bartender, Virgil.  Lost in a churning sea of souls, Grey comes across a group of men somehow connected to his former home, a plantation replete with it's own dark history.  Just as quickly as they find each other they're suddenly taken away, leaving Grey only one option:\nDig a little deeper.",
     originalLink: "https://nikkonator5000.itch.io/burrows",
     status: "AI번역 진행중",
@@ -66,11 +59,11 @@ const projectData = [
 type Project = typeof projectData[number]
 
 const teamMemberData = [
-  { id: 1, name: "도루룽", image: "./src/assets/members/dorurung.png", description: "아다스트라를 너무 감명 깊게 플레이해서 시작한 번역 프로젝트인데.. 스케일이 끝도없이 커지고 있다!", job: "프로그래머", discord: "Dorurung#6690", telegram: "@dorurung"},
-  { id: 2, name: "Husky", image: "./src/assets/members/husky.jpg", description: "", job: "번역가"},
-  { id: 3, name: "늑발", image: "./src/assets/members/nukbal.jpg", description: "", job: "프로그래머", twitter: "https://x.com/frostwolfclaw"},
-  { id: 4, name: "Nelson", image: "./src/assets/members/nelson.png", description: "", job: "번역가", twitter: "https://x.com/ultim8nelson"},
-  { id: 5, name: "레드벨", image: "./src/assets/members/redbell.png", description: "", job: "번역가"}
+  { id: 1, name: "도루룽", image: "/assets/members/dorurung.png", description: "아다스트라를 너무 감명 깊게 플레이해서 시작한 번역 프로젝트인데.. 스케일이 끝도없이 커지고 있다!", job: "프로그래머", discord: "Dorurung#6690", telegram: "@dorurung"},
+  { id: 2, name: "Husky", image: "/assets/members/husky.jpg", description: "", job: "번역가"},
+  { id: 3, name: "늑발", image: "/assets/members/nukbal.jpg", description: "", job: "프로그래머", twitter: "https://x.com/frostwolfclaw"},
+  { id: 4, name: "Nelson", image: "/assets/members/nelson.png", description: "", job: "번역가", twitter: "https://x.com/ultim8nelson"},
+  { id: 5, name: "레드벨", image: "/assets/members/redbell.png", description: "", job: "번역가"}
 ]
 
 const Projects = () => {
